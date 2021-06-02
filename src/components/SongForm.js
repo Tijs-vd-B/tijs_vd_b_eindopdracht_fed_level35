@@ -1,21 +1,26 @@
 import React from "react";
-import InputField from "./InputField";
+import InputTextField from "./InputTextField";
+import InputNumberField from "./InputNumberField";
 
 function SongForm(props) {
   return (
     <div className="songform-container">
       <form>
-        <InputField
+        <InputTextField
           name="newSongTitle"
           placeholder="Song"
           handleChange={props.handleChange}
         />
-        <InputField
+        <InputTextField
           name="newSongArtist"
           placeholder="Artist"
           handleChange={props.handleChange}
         />
-
+        <InputNumberField
+          name="newSongRating"
+          placeholder="Rating"
+          handleChange={props.handleChange}
+        />
         <button onClick={props.handleClickAddSong}>Add Song</button>
       </form>
     </div>

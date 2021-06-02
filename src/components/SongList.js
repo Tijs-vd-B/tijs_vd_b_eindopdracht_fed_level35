@@ -11,7 +11,7 @@ function SongList(props) {
       <td>{item.title}</td>
       <td>{item.artist}</td>
       <td>Genre</td>
-      <td>Rating</td>
+      <td>{item.rating}</td>
     </tr>
   ));
   return listItems;

@@ -6,7 +6,9 @@ class SongOverview extends Component {
   constructor() {
     super();
     this.state = {
-      songs: [{ id: 1, title: "Hungerstrike", artist: "Temple of a Dog" }],
+      songs: [
+        { id: 1, title: "Hungerstrike", artist: "Temple of a Dog", rating: 5 },
+      ],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
@@ -19,10 +21,19 @@ class SongOverview extends Component {
   handleClickAddSong = (event) => {
     event.preventDefault();
     console.log(event);
+    let checkedRating = "";
+    if (this.state.newSongRating < 0) {
+      checkedRating = 0;
+    } else if (this.state.newSongRating > 5) {
+      checkedRating = 5;
+    } else {
+      checkedRating = Math.round(this.state.newSongRating * 2) / 2;
+    }
     const newSong = {
       id: this.state.songs.length + 1,
       title: this.capitalizeFirstChar(this.state.newSongTitle),
       artist: this.capitalizeFirstChar(this.state.newSongArtist),
+      rating: checkedRating,
     };
     console.log(newSong);
     this.setState({
