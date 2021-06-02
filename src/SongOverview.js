@@ -7,7 +7,45 @@ class SongOverview extends Component {
     super();
     this.state = {
       songs: [
-        { id: 1, title: "Hungerstrike", artist: "Temple of a Dog", rating: 5 },
+        {
+          id: 1,
+          title: "Hungerstrike",
+          artist: "Temple of a Dog",
+          genre: "Grunge",
+          rating: 5,
+        },
+      ],
+      genres: [
+        "Blues",
+        "Classical",
+        "Country",
+        "Dance",
+        "Dubstep",
+        "EDM",
+        "Emo",
+        "Funk",
+        "Folk",
+        "Garage",
+        "Grunge",
+        "Hip Hop",
+        "House",
+        "Indie",
+        "Jazz",
+        "K-Pop",
+        "Latin",
+        "Metal",
+        "Motown",
+        "Opera",
+        "Pop",
+        "Punk",
+        "Rap",
+        "Reggae",
+        "R&B",
+        "Rock",
+        "Soul",
+        "Techno",
+        "Trance",
+        "World",
       ],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -20,7 +58,7 @@ class SongOverview extends Component {
 
   handleClickAddSong = (event) => {
     event.preventDefault();
-    console.log(event);
+    console.log(this.state);
     let checkedRating = "";
     if (this.state.newSongRating < 0) {
       checkedRating = 0;
@@ -33,6 +71,7 @@ class SongOverview extends Component {
       id: this.state.songs.length + 1,
       title: this.capitalizeFirstChar(this.state.newSongTitle),
       artist: this.capitalizeFirstChar(this.state.newSongArtist),
+      genre: this.state.newSongGenre,
       rating: checkedRating,
     };
     console.log(newSong);
@@ -53,6 +92,7 @@ class SongOverview extends Component {
         <SongForm
           handleClickAddSong={this.handleClickAddSong}
           handleChange={this.handleChange}
+          genres={this.state.genres}
         />
         <table style={{ width: "100%" }}>
           <tbody>
