@@ -51,9 +51,9 @@ class SongOverview extends Component {
               <th className="song-row__item">Genre</th>
               <th className="song-row__item">Rating</th>
             </tr>
+            <SongList songs={this.state.songs} />
           </tbody>
         </table>
-        <SongList songs={this.state.songs} />
       </div>
     );
   }
