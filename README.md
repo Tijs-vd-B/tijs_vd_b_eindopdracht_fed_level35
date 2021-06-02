@@ -11,3 +11,4 @@ Changelog:
       - SongOverview
         - SongForm
         - SongList
+- Basic addSong functionality for title and artist added and working
