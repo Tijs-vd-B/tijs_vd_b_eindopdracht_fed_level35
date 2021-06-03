@@ -126,21 +126,10 @@ class SongOverview extends Component {
           genres={this.state.genres}
           ratingOptions={this.state.ratingOptions}
         />
-        <table style={{ width: "100%" }}>
-          <tbody>
-            <tr className="song-header">
-              <th className="song-row__item">Song</th>
-              <th className="song-row__item">Artist</th>
-              <th className="song-row__item">Genre</th>
-              <th className="song-row__item">Rating</th>
-              <th className="song-row__item">Remove</th>
-            </tr>
-            <SongList
-              songs={this.state.songs}
-              handleClickRemoveItem={this.handleClickRemoveItem}
-            />
-          </tbody>
-        </table>
+        <SongList
+          songs={this.state.songs}
+          handleClickRemoveItem={this.handleClickRemoveItem}
+        />
       </div>
     );
   }

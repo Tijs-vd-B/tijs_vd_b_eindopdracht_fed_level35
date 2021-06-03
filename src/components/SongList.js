@@ -14,7 +14,22 @@ function SongList(props) {
       </td>
     </tr>
   ));
-  return listItems;
+  return (
+    sortedData.length > 0 && (
+      <table style={{ width: "100%" }}>
+        <thead>
+          <tr className="song-header">
+            <th className="song-row__item">Song</th>
+            <th className="song-row__item">Artist</th>
+            <th className="song-row__item">Genre</th>
+            <th className="song-row__item">Rating</th>
+            <th className="song-row__item">Remove</th>
+          </tr>
+        </thead>
+        <tbody>{listItems}</tbody>
+      </table>
+    )
+  );
 }
 
 export default SongList;
