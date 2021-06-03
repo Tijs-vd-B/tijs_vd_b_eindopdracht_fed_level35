@@ -21,3 +21,4 @@ Changelog:
 - Added protection from not entering a title or artist.
 - > sidestep, [add-remove] add remove function on items in the songlist
 it works, but the way of adding an id/key by using the array.length now has issues since the length goes down, but the id's remain unchanged
+- > redid add id, by always using a new unused id in handleClickAddSong, and store it in state, but now I can no longer depend on the id being the same as the elements index in the array, still no return to main...

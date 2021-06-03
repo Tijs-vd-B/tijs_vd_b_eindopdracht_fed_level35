@@ -51,6 +51,7 @@ class SongOverview extends Component {
       ratingOptions: [0, 1, 2, 3, 4, 5],
       newSongGenre: "Unknown",
       newSongRating: 0,
+      nextId: 1,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
@@ -77,18 +78,22 @@ class SongOverview extends Component {
         `Your input is a bit too long for comfort sry...! I'd keep it under 50 chars..."`
       );
     } else {
+      let setId = this.state.nextId;
       const newSong = {
-        id: this.state.songs.length,
+        id: setId,
         title: this.capitalizeFirstChar(this.state.newSongTitle),
         artist: this.capitalizeFirstChar(this.state.newSongArtist),
         genre: this.state.newSongGenre,
         rating: this.state.newSongRating,
       };
+      setId++;
       console.log(newSong);
       this.setState({
         ...this.state,
         songs: [...this.state.songs].concat(newSong),
+        nextId: setId,
       });
+      console.log(this.state.nextId);
     }
   };
 
@@ -101,11 +106,6 @@ class SongOverview extends Component {
       ...this.state,
       songs: newSongs,
     });
-    // let newSongs = this.state.songs.filter((song) => {
-    //   return song !== item;
-    // });
-    // this.setState({ songs: newSongs });
-    // const removeId = event.id
   };
 
   handleChange = (event) => {
