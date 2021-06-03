@@ -16,6 +16,7 @@ class SongOverview extends Component {
         },
       ],
       genres: [
+        "Unknown",
         "Blues",
         "Classical",
         "Country",
@@ -47,7 +48,9 @@ class SongOverview extends Component {
         "Trance",
         "World",
       ],
-      ratingOptions: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
+      ratingOptions: [0, 1, 2, 3, 4, 5],
+      newSongGenre: "Unknown",
+      newSongRating: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
@@ -60,18 +63,32 @@ class SongOverview extends Component {
   handleClickAddSong = (event) => {
     event.preventDefault();
     console.log(this.state);
-    const newSong = {
-      id: this.state.songs.length + 1,
-      title: this.capitalizeFirstChar(this.state.newSongTitle),
-      artist: this.capitalizeFirstChar(this.state.newSongArtist),
-      genre: this.state.newSongGenre,
-      rating: this.state.newSongRating,
-    };
-    console.log(newSong);
-    this.setState({
-      ...this.state,
-      songs: [...this.state.songs].concat(newSong),
-    });
+    if (
+      this.state.newSongTitle === undefined ||
+      this.state.newSongArtist === undefined
+    ) {
+      alert(`PLease fill in all fields`);
+    } else if (
+      this.state.newSongTitle.length > 50 ||
+      this.state.newSongArtist.length > 50
+    ) {
+      alert(
+        `Your input is a bit too long for comfort sry...! I'd keep it under 50 chars..."`
+      );
+    } else {
+      const newSong = {
+        id: this.state.songs.length + 1,
+        title: this.capitalizeFirstChar(this.state.newSongTitle),
+        artist: this.capitalizeFirstChar(this.state.newSongArtist),
+        genre: this.state.newSongGenre,
+        rating: this.state.newSongRating,
+      };
+      console.log(newSong);
+      this.setState({
+        ...this.state,
+        songs: [...this.state.songs].concat(newSong),
+      });
+    }
   };
 
   handleChange(event) {

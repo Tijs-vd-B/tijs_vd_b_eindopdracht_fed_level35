@@ -11,7 +11,6 @@ function InputSelect(props) {
     <select
       className="song-form-item"
       name={props.name}
-      defaultValue={props.name}
       onChange={props.handleChange}
     >
       {listItems}
