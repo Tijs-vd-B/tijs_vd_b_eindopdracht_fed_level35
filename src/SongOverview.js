@@ -100,7 +100,11 @@ class SongOverview extends Component {
   handleClickRemoveItem = (item) => {
     console.log(item);
     let newSongs = this.state.songs;
-    newSongs.splice(item.id, 1);
+    for (let i = 0; i < newSongs.length; i++) {
+      if (newSongs[i] === item) {
+        newSongs.splice(i, 1);
+      }
+    }
     console.log(newSongs);
     this.setState({
       ...this.state,
