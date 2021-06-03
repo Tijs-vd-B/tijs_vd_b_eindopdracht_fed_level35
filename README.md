@@ -24,3 +24,6 @@ it works, but the way of adding an id/key by using the array.length now has issu
 - > redid add id, by always using a new unused id in handleClickAddSong, and store it in state, but now I can no longer depend on the id being the same as the elements index in the array, still no return to main...
 - > Used a for-loop to find the index of the item to be removed, all ok , back to main.
 - Moved all table data into SongList, and have it not rendered when there are no songs...
+- > Added basic sorting (for now only ascending on Songtitle and Artist)
+- > Sorting added on all headers {title, artist, genre, rating} ascending and descending (switches on second click), using React.useState() hook to set sort-order.
+- > Sorted data is put in a React.useMemo() hook, which should improve performance (likely only noticeable with HUGE songlists ;) ) , back to main.
