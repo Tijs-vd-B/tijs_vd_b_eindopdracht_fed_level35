@@ -1,7 +1,20 @@
 import React from "react";
 
 function SongList(props) {
-  const listItems = props.songs.map((item) => (
+  const [sortedField, setSortedField] = React.useState(null);
+  let sortedData = [...props.songs];
+  if (sortedField !== null) {
+    sortedData.sort((a, b) => {
+      if (a[sortedField] < b[sortedField]) {
+        return -1;
+      }
+      if (a[sortedField] > b[sortedField]) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+  const listItems = sortedData.map((item) => (
     <tr className="song-item" key={item.id} value={item.title}>
       <td>{item.title}</td>
       <td>{item.artist}</td>
@@ -19,8 +32,16 @@ function SongList(props) {
       <table style={{ width: "100%" }}>
         <thead>
           <tr className="song-header">
-            <th className="song-row__item">Song</th>
-            <th className="song-row__item">Artist</th>
+            <th className="song-row__item">
+              <button type="button" onClick={() => setSortedField("title")}>
+                Song
+              </button>
+            </th>
+            <th className="song-row__item">
+              <button type="button" onClick={() => setSortedField("artist")}>
+                Artist
+              </button>
+            </th>
             <th className="song-row__item">Genre</th>
             <th className="song-row__item">Rating</th>
             <th className="song-row__item">Remove</th>

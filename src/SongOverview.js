@@ -14,6 +14,20 @@ class SongOverview extends Component {
           genre: "Grunge",
           rating: 5,
         },
+        {
+          id: 1,
+          title: "Halleluja",
+          artist: "Jeff Buckley",
+          genre: "Indie",
+          rating: 5,
+        },
+        {
+          id: 2,
+          title: "Rosie",
+          artist: "Claw Boys Claw",
+          genre: "Indie",
+          rating: 4,
+        },
       ],
       genres: [
         "Unknown",
@@ -51,7 +65,7 @@ class SongOverview extends Component {
       ratingOptions: [0, 1, 2, 3, 4, 5],
       newSongGenre: "Unknown",
       newSongRating: 0,
-      nextId: 1,
+      nextId: 3,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
