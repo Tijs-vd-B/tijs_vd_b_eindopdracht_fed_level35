@@ -16,38 +16,48 @@ class SongOverview extends Component {
         },
       ],
       genres: [
-        "Blues",
-        "Classical",
-        "Country",
-        "Dance",
-        "Dubstep",
-        "EDM",
-        "Emo",
-        "Funk",
-        "Folk",
-        "Garage",
-        "Grunge",
-        "Hip Hop",
-        "House",
-        "Indie",
-        "Jazz",
-        "K-Pop",
-        "Latin",
-        "Metal",
-        "Motown",
-        "Opera",
-        "Pop",
-        "Punk",
-        "Rap",
-        "Reggae",
-        "R&B",
-        "Rock",
-        "Soul",
-        "Techno",
-        "Trance",
-        "World",
+        { label: "Unknown", value: "Unknown" },
+        { label: "Blues", value: "Blues" },
+        { label: "Classical", value: "Classical" },
+        { label: "Country", value: "Country" },
+        { label: "Dance", value: "Dance" },
+        { label: "Dubstep", value: "Dubstep" },
+        { label: "EDM", value: "EDM" },
+        { label: "Emo", value: "Emo" },
+        { label: "Funk", value: "Funk" },
+        { label: "Folk", value: "Folk" },
+        { label: "Garage", value: "Garage" },
+        { label: "Grunge", value: "Grunge" },
+        { label: "Hip Hop", value: "Hip Hop" },
+        { label: "House", value: "House" },
+        { label: "Indie", value: "Indie" },
+        { label: "Jazz", value: "Jazz" },
+        { label: "K-Pop", value: "K-Pop" },
+        { label: "Latin", value: "Latin" },
+        { label: "Metal", value: "Metal" },
+        { label: "Motown", value: "Motown" },
+        { label: "Opera", value: "Opera" },
+        { label: "Pop", value: "Pop" },
+        { label: "Punk", value: "Punk" },
+        { label: "Rap", value: "Rap" },
+        { label: "Reggae", value: "Reggae" },
+        { label: "R&B", value: "R&B" },
+        { label: "Rock", value: "Rock" },
+        { label: "Soul", value: "Soul" },
+        { label: "Techno", value: "Techno" },
+        { label: "Trance", value: "Trance" },
+        { label: "World", value: "World" },
       ],
-      ratingOptions: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
+      ratingOptions: [
+        { label: 0, value: 0 },
+        { label: 1, value: 1 },
+        { label: 2, value: 2 },
+        { label: 3, value: 3 },
+        { label: 4, value: 4 },
+        { label: 5, value: 5 },
+      ],
+      //   newSongGenre: "Unknown",
+      //   newSongRating: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
@@ -60,18 +70,32 @@ class SongOverview extends Component {
   handleClickAddSong = (event) => {
     event.preventDefault();
     console.log(this.state);
-    const newSong = {
-      id: this.state.songs.length + 1,
-      title: this.capitalizeFirstChar(this.state.newSongTitle),
-      artist: this.capitalizeFirstChar(this.state.newSongArtist),
-      genre: this.state.newSongGenre,
-      rating: this.state.newSongRating,
-    };
-    console.log(newSong);
-    this.setState({
-      ...this.state,
-      songs: [...this.state.songs].concat(newSong),
-    });
+    if (
+      this.state.newSongTitle === undefined ||
+      this.state.newSongArtist === undefined
+    ) {
+      alert(`PLease fill in all fields`);
+    } else if (
+      this.state.newSongTitle.length > 50 ||
+      this.state.newSongArtist.length > 50
+    ) {
+      alert(
+        `Your input is a bit too long for comfort sry...! I'd keep it under 50 chars..."`
+      );
+    } else {
+      const newSong = {
+        id: this.state.songs.length + 1,
+        title: this.capitalizeFirstChar(this.state.newSongTitle),
+        artist: this.capitalizeFirstChar(this.state.newSongArtist),
+        genre: this.state.newSongGenre,
+        rating: this.state.newSongRating,
+      };
+      console.log(newSong);
+      this.setState({
+        ...this.state,
+        songs: [...this.state.songs].concat(newSong),
+      });
+    }
   };
 
   handleChange(event) {

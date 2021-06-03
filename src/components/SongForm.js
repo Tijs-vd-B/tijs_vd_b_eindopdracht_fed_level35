@@ -19,11 +19,15 @@ function SongForm(props) {
         <InputSelect
           name="newSongGenre"
           items={props.genres}
+          placeholder="Unknown"
+          //   defaultValue="Unknown"
           handleChange={props.handleChange}
         />
         <InputSelect
           name="newSongRating"
           items={props.ratingOptions}
+          placeholder="0"
+          //   defaultValue="0"
           handleChange={props.handleChange}
         />
         <button onClick={props.handleClickAddSong}>Add Song</button>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function InputField(props) {
+function InputTextField(props) {
   return (
     <div className="song-form-item">
       <input
@@ -13,4 +13,4 @@ function InputField(props) {
   );
 }
 
-export default InputField;
+export default InputTextField;
