@@ -8,7 +8,7 @@ class SongOverview extends Component {
     this.state = {
       songs: [
         {
-          id: 1,
+          id: 0,
           title: "Hungerstrike",
           artist: "Temple of a Dog",
           genre: "Grunge",
@@ -51,9 +51,11 @@ class SongOverview extends Component {
       ratingOptions: [0, 1, 2, 3, 4, 5],
       newSongGenre: "Unknown",
       newSongRating: 0,
+      nextId: 1,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
+    this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
   }
 
   capitalizeFirstChar = function (string) {
@@ -76,25 +78,44 @@ class SongOverview extends Component {
         `Your input is a bit too long for comfort sry...! I'd keep it under 50 chars..."`
       );
     } else {
+      let setId = this.state.nextId;
       const newSong = {
-        id: this.state.songs.length + 1,
+        id: setId,
         title: this.capitalizeFirstChar(this.state.newSongTitle),
         artist: this.capitalizeFirstChar(this.state.newSongArtist),
         genre: this.state.newSongGenre,
         rating: this.state.newSongRating,
       };
+      setId++;
       console.log(newSong);
       this.setState({
         ...this.state,
         songs: [...this.state.songs].concat(newSong),
+        nextId: setId,
       });
+      console.log(this.state.nextId);
     }
   };
 
-  handleChange(event) {
+  handleClickRemoveItem = (item) => {
+    console.log(item);
+    let newSongs = this.state.songs;
+    for (let i = 0; i < newSongs.length; i++) {
+      if (newSongs[i] === item) {
+        newSongs.splice(i, 1);
+      }
+    }
+    console.log(newSongs);
+    this.setState({
+      ...this.state,
+      songs: newSongs,
+    });
+  };
+
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   render() {
     return (
@@ -112,8 +133,12 @@ class SongOverview extends Component {
               <th className="song-row__item">Artist</th>
               <th className="song-row__item">Genre</th>
               <th className="song-row__item">Rating</th>
+              <th className="song-row__item">Remove</th>
             </tr>
-            <SongList songs={this.state.songs} />
+            <SongList
+              songs={this.state.songs}
+              handleClickRemoveItem={this.handleClickRemoveItem}
+            />
           </tbody>
         </table>
       </div>
