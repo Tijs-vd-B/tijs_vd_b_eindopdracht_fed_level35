@@ -8,7 +8,7 @@ class SongOverview extends Component {
     this.state = {
       songs: [
         {
-          id: 1,
+          id: 0,
           title: "Hungerstrike",
           artist: "Temple of a Dog",
           genre: "Grunge",
@@ -54,6 +54,7 @@ class SongOverview extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
+    this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
   }
 
   capitalizeFirstChar = function (string) {
@@ -77,7 +78,7 @@ class SongOverview extends Component {
       );
     } else {
       const newSong = {
-        id: this.state.songs.length + 1,
+        id: this.state.songs.length,
         title: this.capitalizeFirstChar(this.state.newSongTitle),
         artist: this.capitalizeFirstChar(this.state.newSongArtist),
         genre: this.state.newSongGenre,
@@ -91,10 +92,26 @@ class SongOverview extends Component {
     }
   };
 
-  handleChange(event) {
+  handleClickRemoveItem = (item) => {
+    console.log(item);
+    let newSongs = this.state.songs;
+    newSongs.splice(item.id, 1);
+    console.log(newSongs);
+    this.setState({
+      ...this.state,
+      songs: newSongs,
+    });
+    // let newSongs = this.state.songs.filter((song) => {
+    //   return song !== item;
+    // });
+    // this.setState({ songs: newSongs });
+    // const removeId = event.id
+  };
+
+  handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   render() {
     return (
@@ -112,8 +129,12 @@ class SongOverview extends Component {
               <th className="song-row__item">Artist</th>
               <th className="song-row__item">Genre</th>
               <th className="song-row__item">Rating</th>
+              <th className="song-row__item">Remove</th>
             </tr>
-            <SongList songs={this.state.songs} />
+            <SongList
+              songs={this.state.songs}
+              handleClickRemoveItem={this.handleClickRemoveItem}
+            />
           </tbody>
         </table>
       </div>

@@ -7,6 +7,11 @@ function SongList(props) {
       <td>{item.artist}</td>
       <td>{item.genre}</td>
       <td>{item.rating}</td>
+      <td>
+        <button onClick={props.handleClickRemoveItem.bind(this, item)}>
+          Remove
+        </button>
+      </td>
     </tr>
   ));
   return listItems;

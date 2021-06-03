@@ -19,3 +19,5 @@ Changelog:
 - > sidestep, trying to use react-select to create the select-list and pass a default when nothing is selected, make sure to run  [npm install react-select] when running this branch
 - Although the sidestep in branch [reeact-select] was nice for creating select lists, but it created other issues and did not help in setting a default easily. Reverted back to main and figured I'd overlooked just putting a defaults in the initial {this.state}
 - Added protection from not entering a title or artist.
+- > sidestep, [add-remove] add remove function on items in the songlist
+it works, but the way of adding an id/key by using the array.length now has issues since the length goes down, but the id's remain unchanged
