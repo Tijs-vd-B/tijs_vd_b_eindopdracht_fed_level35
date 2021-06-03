@@ -1,7 +1,6 @@
 import React from "react";
 import InputTextField from "./InputTextField";
 import InputSelect from "./InputSelect";
-import InputNumberField from "./InputNumberField";
 
 function SongForm(props) {
   return (
@@ -19,12 +18,12 @@ function SongForm(props) {
         />
         <InputSelect
           name="newSongGenre"
-          genres={props.genres}
+          items={props.genres}
           handleChange={props.handleChange}
         />
-        <InputNumberField
+        <InputSelect
           name="newSongRating"
-          placeholder="Rating"
+          items={props.ratingOptions}
           handleChange={props.handleChange}
         />
         <button onClick={props.handleClickAddSong}>Add Song</button>

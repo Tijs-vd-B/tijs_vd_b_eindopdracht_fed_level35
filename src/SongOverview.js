@@ -47,6 +47,7 @@ class SongOverview extends Component {
         "Trance",
         "World",
       ],
+      ratingOptions: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
@@ -59,20 +60,12 @@ class SongOverview extends Component {
   handleClickAddSong = (event) => {
     event.preventDefault();
     console.log(this.state);
-    let checkedRating = "";
-    if (this.state.newSongRating < 0) {
-      checkedRating = 0;
-    } else if (this.state.newSongRating > 5) {
-      checkedRating = 5;
-    } else {
-      checkedRating = Math.round(this.state.newSongRating * 2) / 2;
-    }
     const newSong = {
       id: this.state.songs.length + 1,
       title: this.capitalizeFirstChar(this.state.newSongTitle),
       artist: this.capitalizeFirstChar(this.state.newSongArtist),
       genre: this.state.newSongGenre,
-      rating: checkedRating,
+      rating: this.state.newSongRating,
     };
     console.log(newSong);
     this.setState({
@@ -93,6 +86,7 @@ class SongOverview extends Component {
           handleClickAddSong={this.handleClickAddSong}
           handleChange={this.handleChange}
           genres={this.state.genres}
+          ratingOptions={this.state.ratingOptions}
         />
         <table style={{ width: "100%" }}>
           <tbody>

@@ -15,3 +15,4 @@ Changelog:
 - Added basic rendering of the SongList
 - Added rating (0-5) creation and displaying, split InputField into InputTextField & InputNumberField
 - Added genre-list selector
+- Moved the ratings input from InputNumberField to InputSelect, since it is a bit cleaner and makes all handling illegal input obsolete, ratings currently work with 0.5 increments, but since that is ugly will probably move to just 0,1,2,3,4,5... InputSelect was modified to work with props.items (props.genres was a tad specific)

@@ -1,8 +1,8 @@
 import React from "react";
 
 function InputSelect(props) {
-  const listItems = props.genres.map((item) => (
-    <option value={item} key={props.genres.indexOf(item)}>
+  const listItems = props.items.map((item) => (
+    <option value={item} key={props.items.indexOf(item)}>
       {item}
     </option>
   ));
