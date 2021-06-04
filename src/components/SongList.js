@@ -4,21 +4,18 @@ function SongList(props) {
   const data = props.songs;
   const [sortConfig, setSortConfig] = React.useState(null);
 
-  const sortedData = React.useMemo(() => {
-    let sortedData = [...data];
-    if (sortConfig !== null) {
-      sortedData.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-    return sortedData;
-  }, [data, sortConfig]);
+  let sortedData = data;
+  if (sortConfig !== null) {
+    sortedData.sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+  }
 
   const requestSort = (key) => {
     let direction = "ascending";
@@ -42,8 +39,15 @@ function SongList(props) {
   };
 
   const filterSetting = (filter) => {
+    console.log(filter);
+    const filterOn = filter.value;
+    console.log(filterOn);
     if (filter === "All") return () => true;
-    else return (i) => i.genre === "Grunge";
+    else if (filter.name === "genre") {
+      return (i) => i.genre === filter.value;
+    } else if (filter.name === "rating") {
+      return (i) => i.rating === parseInt(filter.value);
+    }
   };
 
   const listItems = sortedData

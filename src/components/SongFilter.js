@@ -3,16 +3,16 @@ import InputSelect from "./InputSelect";
 
 function SongFilter(props) {
   return (
-    <form className="songfilter-container">
+    <form className="songfilter-container" onChange={props.handleChange}>
       <InputSelect
         name="filterGenre"
         items={props.genres}
-        handleChange={props.handleClickFilter}
+        handleChange={props.handleChange}
       />
       <InputSelect
         name="filterRating"
         items={props.ratingOptions}
-        handleChange={props.handleClickFilter}
+        handleChange={props.handleChange}
       />
     </form>
   );

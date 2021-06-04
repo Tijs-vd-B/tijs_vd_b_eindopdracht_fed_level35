@@ -73,7 +73,6 @@ class SongOverview extends Component {
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.handleClickRemoveAllSongs = this.handleClickRemoveAllSongs.bind(this);
-    this.handleClickSetFilter = this.handleClickSetFilter.bind(this);
   }
 
   capitalizeFirstChar = function (string) {
@@ -102,7 +101,7 @@ class SongOverview extends Component {
         title: this.capitalizeFirstChar(this.state.newSongTitle),
         artist: this.capitalizeFirstChar(this.state.newSongArtist),
         genre: this.state.newSongGenre,
-        rating: this.state.newSongRating,
+        rating: parseInt(this.state.newSongRating),
       };
       setId++;
       console.log(newSong);
@@ -142,14 +141,26 @@ class SongOverview extends Component {
     this.setState({ [name]: value });
   };
 
-  handleClickSetFilter = (event) => {
-    console.log(event);
-    const filteredSongs = this.state.songs;
-    const filterItems = (arr, query) => {
-      return arr.filter(
-        (el) => el.toLowerCase().indexOf(query.toLowerCase()) !== -1
-      );
-    };
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.filterGenre !== this.state.filterGenre) {
+      this.setFilter("genre");
+    }
+    if (prevState.filterRating !== this.state.filterRating) {
+      this.setFilter("rating");
+    }
+  }
+
+  setFilter = (type) => {
+    let newFilter = "All";
+    if (type === "genre") {
+      newFilter = { name: "genre", value: this.state.filterGenre };
+    } else if (type === "rating") {
+      newFilter = { name: "rating", value: this.state.filterRating };
+    }
+    this.setState({
+      ...this.state,
+      currentFilter: newFilter,
+    });
   };
 
   render() {
@@ -163,7 +174,6 @@ class SongOverview extends Component {
         />
         <hr />
         <SongFilter
-          handleClickSetFilter={this.handleClickSetFilter}
           handleChange={this.handleChange}
           genres={this.state.genres}
           ratingOptions={this.state.ratingOptions}

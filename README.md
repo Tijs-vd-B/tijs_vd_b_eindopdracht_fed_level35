@@ -32,3 +32,5 @@ it works, but the way of adding an id/key by using the array.length now has issu
 - Added a visual indication what sorting is active
 - > The beginnings of a filtering on Genre/Rating...
 - > Basic filtering works, now set to All (default state) , need options set the filter (and clean up unused stuff)
+- > Filtering seems working (and stable) now, used a componentDidUpdate() to check changes on selection of the filter and setting the new filter rules. added parseInt on rating. Need a reset filter option.
+- > React.useMemo() did not update on all state.changes , removed for now, (will possibly return later)
