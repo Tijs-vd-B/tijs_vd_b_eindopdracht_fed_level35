@@ -14,3 +14,12 @@
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
 }
+
+.songform-container {
+  padding-top: 0.5rem;
+  padding-bottom: 0.2rem;
+  display: flex;
+  /* flex-direction: row; */
+  flex-flow: row;
+  justify-content: space-evenly;
+}

@@ -33,8 +33,16 @@ function SongList(props) {
     console.log(sortConfig);
   };
 
+  const setButtonText = (name) => {
+    // console.log(sortConfig.key);
+    if (sortConfig == null || sortConfig.key !== name.toLowerCase())
+      return `${name}`;
+    else if (sortConfig.direction === "descending") return `${name} ˄`;
+    else return `${name} ˅`;
+  };
+
   const listItems = sortedData.map((item) => (
-    <tr className="song-item" key={item.id} value={item.title}>
+    <tr className="song-table-item" key={item.id} value={item.title}>
       <td>{item.title}</td>
       <td>{item.artist}</td>
       <td>{item.genre}</td>
@@ -48,30 +56,34 @@ function SongList(props) {
   ));
   return (
     sortedData.length > 0 && (
-      <table style={{ width: "100%" }}>
+      <table className="song-table" style={{ width: "100%" }}>
         <thead>
-          <tr className="song-header">
+          <tr className="song-table-header">
             <th className="song-row__item">
               <button type="button" onClick={() => requestSort("title")}>
-                Song
+                {setButtonText("Title")}
               </button>
             </th>
             <th className="song-row__item">
               <button type="button" onClick={() => requestSort("artist")}>
-                Artist
+                {setButtonText("Artist")}
               </button>
             </th>
             <th className="song-row__item">
               <button type="button" onClick={() => requestSort("genre")}>
-                Genre
+                {setButtonText("Genre")}
               </button>
             </th>
             <th className="song-row__item">
               <button type="button" onClick={() => requestSort("rating")}>
-                Rating
+                {setButtonText("Rating")}
               </button>
             </th>
-            <th className="song-row__item">Remove</th>
+            <th className="song-row__item">
+              <button type="button" onClick={props.handleClickRemoveAllSongs}>
+                RemALL
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>{listItems}</tbody>

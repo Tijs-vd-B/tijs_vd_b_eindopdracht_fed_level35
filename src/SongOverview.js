@@ -70,6 +70,7 @@ class SongOverview extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
+    this.handleClickRemoveAllSongs = this.handleClickRemoveAllSongs.bind(this);
   }
 
   capitalizeFirstChar = function (string) {
@@ -126,6 +127,13 @@ class SongOverview extends Component {
     });
   };
 
+  handleClickRemoveAllSongs() {
+    this.setState({
+      ...this.state,
+      songs: [],
+    });
+  }
+
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -140,9 +148,11 @@ class SongOverview extends Component {
           genres={this.state.genres}
           ratingOptions={this.state.ratingOptions}
         />
+        <hr />
         <SongList
           songs={this.state.songs}
           handleClickRemoveItem={this.handleClickRemoveItem}
+          handleClickRemoveAllSongs={this.handleClickRemoveAllSongs}
         />
       </div>
     );

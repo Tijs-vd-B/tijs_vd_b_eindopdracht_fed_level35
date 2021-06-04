@@ -27,3 +27,6 @@ it works, but the way of adding an id/key by using the array.length now has issu
 - > Added basic sorting (for now only ascending on Songtitle and Artist)
 - > Sorting added on all headers {title, artist, genre, rating} ascending and descending (switches on second click), using React.useState() hook to set sort-order.
 - > Sorted data is put in a React.useMemo() hook, which should improve performance (likely only noticeable with HUGE songlists ;) ) , back to main.
+- Added a simple Remove All that removes all songs, maybe I should add a 'are you sure' dialog
+- Basic styling on the form-container
+- Added a visual indication what sorting is active
