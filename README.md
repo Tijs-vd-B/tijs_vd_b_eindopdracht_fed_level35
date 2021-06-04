@@ -30,3 +30,4 @@ it works, but the way of adding an id/key by using the array.length now has issu
 - Added a simple Remove All that removes all songs, maybe I should add a 'are you sure' dialog
 - Basic styling on the form-container
 - Added a visual indication what sorting is active
+- > The beginnings of a filtering on Genre/Rating...

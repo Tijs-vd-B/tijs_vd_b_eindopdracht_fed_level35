@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SongForm from "./components/SongForm";
 import SongList from "./components/SongList";
+import SongFilter from "./components/SongFilter";
 
 class SongOverview extends Component {
   constructor() {
@@ -71,6 +72,7 @@ class SongOverview extends Component {
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.handleClickRemoveAllSongs = this.handleClickRemoveAllSongs.bind(this);
+    this.handleClickFilter = this.handleClickFilter.bind(this);
   }
 
   capitalizeFirstChar = function (string) {
@@ -139,11 +141,22 @@ class SongOverview extends Component {
     this.setState({ [name]: value });
   };
 
+  handleClickFilter = (event) => {
+    console.log(event);
+  };
+
   render() {
     return (
       <div>
         <SongForm
           handleClickAddSong={this.handleClickAddSong}
+          handleChange={this.handleChange}
+          genres={this.state.genres}
+          ratingOptions={this.state.ratingOptions}
+        />
+        <hr />
+        <SongFilter
+          handleClickFilter={this.handleClickFilter}
           handleChange={this.handleChange}
           genres={this.state.genres}
           ratingOptions={this.state.ratingOptions}
