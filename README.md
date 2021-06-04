@@ -31,3 +31,4 @@ it works, but the way of adding an id/key by using the array.length now has issu
 - Basic styling on the form-container
 - Added a visual indication what sorting is active
 - > The beginnings of a filtering on Genre/Rating...
+- > Basic filtering works, now set to All (default state) , need options set the filter (and clean up unused stuff)

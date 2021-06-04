@@ -67,12 +67,13 @@ class SongOverview extends Component {
       newSongGenre: "Unknown",
       newSongRating: 0,
       nextId: 3,
+      currentFilter: "All",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.handleClickRemoveAllSongs = this.handleClickRemoveAllSongs.bind(this);
-    this.handleClickFilter = this.handleClickFilter.bind(this);
+    this.handleClickSetFilter = this.handleClickSetFilter.bind(this);
   }
 
   capitalizeFirstChar = function (string) {
@@ -141,8 +142,14 @@ class SongOverview extends Component {
     this.setState({ [name]: value });
   };
 
-  handleClickFilter = (event) => {
+  handleClickSetFilter = (event) => {
     console.log(event);
+    const filteredSongs = this.state.songs;
+    const filterItems = (arr, query) => {
+      return arr.filter(
+        (el) => el.toLowerCase().indexOf(query.toLowerCase()) !== -1
+      );
+    };
   };
 
   render() {
@@ -156,7 +163,7 @@ class SongOverview extends Component {
         />
         <hr />
         <SongFilter
-          handleClickFilter={this.handleClickFilter}
+          handleClickSetFilter={this.handleClickSetFilter}
           handleChange={this.handleChange}
           genres={this.state.genres}
           ratingOptions={this.state.ratingOptions}
@@ -166,6 +173,7 @@ class SongOverview extends Component {
           songs={this.state.songs}
           handleClickRemoveItem={this.handleClickRemoveItem}
           handleClickRemoveAllSongs={this.handleClickRemoveAllSongs}
+          currentFilter={this.state.currentFilter}
         />
       </div>
     );

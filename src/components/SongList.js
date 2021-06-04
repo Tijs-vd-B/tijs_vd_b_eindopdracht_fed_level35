@@ -41,19 +41,26 @@ function SongList(props) {
     else return `${name} ˅`;
   };
 
-  const listItems = sortedData.map((item) => (
-    <tr className="song-table-item" key={item.id} value={item.title}>
-      <td>{item.title}</td>
-      <td>{item.artist}</td>
-      <td>{item.genre}</td>
-      <td>{item.rating}</td>
-      <td>
-        <button onClick={props.handleClickRemoveItem.bind(this, item)}>
-          Remove
-        </button>
-      </td>
-    </tr>
-  ));
+  const filterSetting = (filter) => {
+    if (filter === "All") return () => true;
+    else return (i) => i.genre === "Grunge";
+  };
+
+  const listItems = sortedData
+    .filter(filterSetting(props.currentFilter))
+    .map((item) => (
+      <tr className="song-table-item" key={item.id} value={item.title}>
+        <td>{item.title}</td>
+        <td>{item.artist}</td>
+        <td>{item.genre}</td>
+        <td>{item.rating}</td>
+        <td>
+          <button onClick={props.handleClickRemoveItem.bind(this, item)}>
+            Remove
+          </button>
+        </td>
+      </tr>
+    ));
   return (
     sortedData.length > 0 && (
       <table className="song-table" style={{ width: "100%" }}>
