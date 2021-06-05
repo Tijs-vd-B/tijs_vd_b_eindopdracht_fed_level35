@@ -27,11 +27,9 @@ function SongList(props) {
       direction = "descending";
     }
     setSortConfig({ key, direction });
-    console.log(sortConfig);
   };
 
   const setButtonText = (name) => {
-    // console.log(sortConfig.key);
     if (sortConfig == null || sortConfig.key !== name.toLowerCase())
       return `${name}`;
     else if (sortConfig.direction === "descending") return `${name} ˄`;
@@ -39,9 +37,6 @@ function SongList(props) {
   };
 
   const filterSetting = (filter) => {
-    console.log(filter);
-    const filterOn = filter.value;
-    console.log(filterOn);
     if (filter === "All") return () => true;
     else if (filter.name === "genre") {
       return (i) => i.genre === filter.value;

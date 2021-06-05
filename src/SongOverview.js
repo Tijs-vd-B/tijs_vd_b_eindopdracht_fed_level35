@@ -73,6 +73,7 @@ class SongOverview extends Component {
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.handleClickRemoveAllSongs = this.handleClickRemoveAllSongs.bind(this);
+    this.handleClickResetFilter = this.handleClickResetFilter.bind(this);
   }
 
   capitalizeFirstChar = function (string) {
@@ -150,6 +151,13 @@ class SongOverview extends Component {
     }
   }
 
+  handleClickResetFilter = () => {
+    this.setState({
+      ...this.state,
+      currentFilter: "All",
+    });
+  };
+
   setFilter = (type) => {
     let newFilter = "All";
     if (type === "genre") {
@@ -177,6 +185,7 @@ class SongOverview extends Component {
           handleChange={this.handleChange}
           genres={this.state.genres}
           ratingOptions={this.state.ratingOptions}
+          handleClickResetFilter={this.handleClickResetFilter}
         />
         <hr />
         <SongList
