@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SongForm from "./components/SongForm";
 import SongList from "./components/SongList";
+import SongFilter from "./components/SongFilter";
 
 class SongOverview extends Component {
   constructor() {
@@ -66,11 +67,13 @@ class SongOverview extends Component {
       newSongGenre: "Unknown",
       newSongRating: 0,
       nextId: 3,
+      currentFilter: "All",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.handleClickRemoveAllSongs = this.handleClickRemoveAllSongs.bind(this);
+    this.handleClickResetFilter = this.handleClickResetFilter.bind(this);
   }
 
   capitalizeFirstChar = function (string) {
@@ -99,7 +102,7 @@ class SongOverview extends Component {
         title: this.capitalizeFirstChar(this.state.newSongTitle),
         artist: this.capitalizeFirstChar(this.state.newSongArtist),
         genre: this.state.newSongGenre,
-        rating: this.state.newSongRating,
+        rating: parseInt(this.state.newSongRating),
       };
       setId++;
       console.log(newSong);
@@ -139,6 +142,35 @@ class SongOverview extends Component {
     this.setState({ [name]: value });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.filterGenre !== this.state.filterGenre) {
+      this.setFilter("genre");
+    }
+    if (prevState.filterRating !== this.state.filterRating) {
+      this.setFilter("rating");
+    }
+  }
+
+  handleClickResetFilter = () => {
+    this.setState({
+      ...this.state,
+      currentFilter: "All",
+    });
+  };
+
+  setFilter = (type) => {
+    let newFilter = "All";
+    if (type === "genre") {
+      newFilter = { name: "genre", value: this.state.filterGenre };
+    } else if (type === "rating") {
+      newFilter = { name: "rating", value: this.state.filterRating };
+    }
+    this.setState({
+      ...this.state,
+      currentFilter: newFilter,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -149,10 +181,18 @@ class SongOverview extends Component {
           ratingOptions={this.state.ratingOptions}
         />
         <hr />
+        <SongFilter
+          handleChange={this.handleChange}
+          genres={this.state.genres}
+          ratingOptions={this.state.ratingOptions}
+          handleClickResetFilter={this.handleClickResetFilter}
+        />
+        <hr />
         <SongList
           songs={this.state.songs}
           handleClickRemoveItem={this.handleClickRemoveItem}
           handleClickRemoveAllSongs={this.handleClickRemoveAllSongs}
+          currentFilter={this.state.currentFilter}
         />
       </div>
     );

@@ -4,21 +4,18 @@ function SongList(props) {
   const data = props.songs;
   const [sortConfig, setSortConfig] = React.useState(null);
 
-  const sortedData = React.useMemo(() => {
-    let sortedData = [...data];
-    if (sortConfig !== null) {
-      sortedData.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === "ascending" ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-    return sortedData;
-  }, [data, sortConfig]);
+  let sortedData = data;
+  if (sortConfig !== null) {
+    sortedData.sort((a, b) => {
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.direction === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+  }
 
   const requestSort = (key) => {
     let direction = "ascending";
@@ -30,30 +27,39 @@ function SongList(props) {
       direction = "descending";
     }
     setSortConfig({ key, direction });
-    console.log(sortConfig);
   };
 
   const setButtonText = (name) => {
-    // console.log(sortConfig.key);
     if (sortConfig == null || sortConfig.key !== name.toLowerCase())
       return `${name}`;
     else if (sortConfig.direction === "descending") return `${name} ˄`;
     else return `${name} ˅`;
   };
 
-  const listItems = sortedData.map((item) => (
-    <tr className="song-table-item" key={item.id} value={item.title}>
-      <td>{item.title}</td>
-      <td>{item.artist}</td>
-      <td>{item.genre}</td>
-      <td>{item.rating}</td>
-      <td>
-        <button onClick={props.handleClickRemoveItem.bind(this, item)}>
-          Remove
-        </button>
-      </td>
-    </tr>
-  ));
+  const filterSetting = (filter) => {
+    if (filter === "All") return () => true;
+    else if (filter.name === "genre") {
+      return (i) => i.genre === filter.value;
+    } else if (filter.name === "rating") {
+      return (i) => i.rating === parseInt(filter.value);
+    }
+  };
+
+  const listItems = sortedData
+    .filter(filterSetting(props.currentFilter))
+    .map((item) => (
+      <tr className="song-table-item" key={item.id} value={item.title}>
+        <td>{item.title}</td>
+        <td>{item.artist}</td>
+        <td>{item.genre}</td>
+        <td>{item.rating}</td>
+        <td>
+          <button onClick={props.handleClickRemoveItem.bind(this, item)}>
+            Remove
+          </button>
+        </td>
+      </tr>
+    ));
   return (
     sortedData.length > 0 && (
       <table className="song-table" style={{ width: "100%" }}>
