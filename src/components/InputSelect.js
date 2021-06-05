@@ -12,7 +12,11 @@ function InputSelect(props) {
       className="song-form-item"
       name={props.name}
       onChange={props.handleChange}
+      defaultValue=""
     >
+      <option value="" key={props.firstItem} disabled>
+        {props.firstItem}
+      </option>
       {listItems}
     </select>
   );

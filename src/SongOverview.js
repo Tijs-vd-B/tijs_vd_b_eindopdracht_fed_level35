@@ -180,7 +180,6 @@ class SongOverview extends Component {
           genres={this.state.genres}
           ratingOptions={this.state.ratingOptions}
         />
-        <hr />
         <SongFilter
           handleChange={this.handleChange}
           genres={this.state.genres}

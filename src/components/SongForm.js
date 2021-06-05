@@ -4,29 +4,33 @@ import InputSelect from "./InputSelect";
 
 function SongForm(props) {
   return (
-    <form className="songform-container">
-      <InputTextField
-        name="newSongTitle"
-        placeholder="Song"
-        handleChange={props.handleChange}
-      />
-      <InputTextField
-        name="newSongArtist"
-        placeholder="Artist"
-        handleChange={props.handleChange}
-      />
-      <InputSelect
-        name="newSongGenre"
-        items={props.genres}
-        handleChange={props.handleChange}
-      />
-      <InputSelect
-        name="newSongRating"
-        items={props.ratingOptions}
-        handleChange={props.handleChange}
-      />
-      <button onClick={props.handleClickAddSong}>Add Song</button>
-    </form>
+    <div className="songform-container">
+      <form className="songform-form">
+        <InputTextField
+          name="newSongTitle"
+          placeholder="Song"
+          handleChange={props.handleChange}
+        />
+        <InputTextField
+          name="newSongArtist"
+          placeholder="Artist"
+          handleChange={props.handleChange}
+        />
+        <InputSelect
+          name="newSongGenre"
+          items={props.genres}
+          handleChange={props.handleChange}
+          firstItem="-=[Select a Genre]=-"
+        />
+        <InputSelect
+          name="newSongRating"
+          items={props.ratingOptions}
+          handleChange={props.handleChange}
+          firstItem="-=[Select a Rating]=-"
+        />
+        <button onClick={props.handleClickAddSong}>Add Song</button>
+      </form>
+    </div>
   );
 }
 
