@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SongForm from "./components/SongForm";
 import SongList from "./components/SongList";
 import SongFilter from "./components/SongFilter";
+import testsongs from "./data/testsongs";
 
 class SongOverview extends Component {
   constructor() {
@@ -71,6 +72,7 @@ class SongOverview extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAddSong = this.handleClickAddSong.bind(this);
+    this.handleClickAddList = this.handleClickAddList.bind(this);
     this.handleClickRemoveItem = this.handleClickRemoveItem.bind(this);
     this.handleClickRemoveAllSongs = this.handleClickRemoveAllSongs.bind(this);
     this.handleClickResetFilter = this.handleClickResetFilter.bind(this);
@@ -82,7 +84,6 @@ class SongOverview extends Component {
 
   handleClickAddSong = (event) => {
     event.preventDefault();
-    console.log(this.state);
     if (
       this.state.newSongTitle === undefined ||
       this.state.newSongArtist === undefined
@@ -105,25 +106,43 @@ class SongOverview extends Component {
         rating: parseInt(this.state.newSongRating),
       };
       setId++;
-      console.log(newSong);
       this.setState({
         ...this.state,
         songs: [...this.state.songs].concat(newSong),
         nextId: setId,
       });
-      console.log(this.state.nextId);
     }
   };
 
+  handleClickAddList = (extra) => {
+    const extraSongs = testsongs;
+    let newSongs = this.state.songs;
+    let setId = this.state.nextId;
+    for (let i = 0; i < extraSongs.length; i++) {
+      let newSong = {
+        id: setId,
+        title: extraSongs[i].title,
+        artist: extraSongs[i].artist,
+        genre: extraSongs[i].genre,
+        rating: extraSongs[i].rating,
+      };
+      setId++;
+      newSongs = [...newSongs].concat(newSong);
+    }
+    this.setState({
+      ...this.state,
+      songs: newSongs,
+      nextId: setId,
+    });
+  };
+
   handleClickRemoveItem = (item) => {
-    console.log(item);
     let newSongs = this.state.songs;
     for (let i = 0; i < newSongs.length; i++) {
       if (newSongs[i] === item) {
         newSongs.splice(i, 1);
       }
     }
-    console.log(newSongs);
     this.setState({
       ...this.state,
       songs: newSongs,
@@ -176,6 +195,7 @@ class SongOverview extends Component {
       <div>
         <SongForm
           handleClickAddSong={this.handleClickAddSong}
+          handleClickAddList={this.handleClickAddList}
           handleChange={this.handleChange}
           genres={this.state.genres}
           ratingOptions={this.state.ratingOptions}

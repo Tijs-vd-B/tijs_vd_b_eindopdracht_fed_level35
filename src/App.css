@@ -11,12 +11,15 @@
   justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
+  padding-bottom: 1rem;
+}
+
+h1,
+h3 {
+  margin: 0;
 }
 
 .songform-container,
-.songform-form,
 .songfilter-container {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -34,4 +37,17 @@ tbody tr:nth-child(even) {
 }
 tbody tr:nth-child(odd) {
   background-color: lightgray;
+}
+.add-list-button {
+  color: red;
+  background-color: darkgrey;
+  border: 0;
+}
+
+@media (min-width: 900px) {
+  .songform-form {
+    display: flex;
+    gap: 2rem;
+    flex-direction: row;
+  }
 }

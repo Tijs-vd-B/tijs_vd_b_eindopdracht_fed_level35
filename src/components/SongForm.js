@@ -30,6 +30,14 @@ function SongForm(props) {
         />
         <button onClick={props.handleClickAddSong}>Add Song</button>
       </form>
+      <button
+        className="add-list-button"
+        name="addList"
+        onClick={props.handleClickAddList}
+        value="testsongs"
+      >
+        .
+      </button>
     </div>
   );
 }

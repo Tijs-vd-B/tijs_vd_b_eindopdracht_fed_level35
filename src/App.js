@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>SaveSong</h1>
+        <h3>SimplisticSingSongSubmissionSystem</h3>
       </header>
       <SongOverview />
     </div>

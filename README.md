@@ -36,3 +36,7 @@ it works, but the way of adding an id/key by using the array.length now has issu
 - > React.useMemo() did not update on all state.changes , removed for now, (will possibly return later)
 - > Added a reset filter button, which basically just sets the currentFilter back to 'All', back to main.
 - Added some (very) basic styling and design, helpful context to the selectors, and such...
+- Added a tiny bit more design / styling
+- Made a rudimentary import-list function for testing, clicking the red . will add all songs in testsongs.js to the current list of songs (multiple clicks will keep adding the same songs...)
+- Removed some remaining console.log's
++ _*Ready for shipping*_
