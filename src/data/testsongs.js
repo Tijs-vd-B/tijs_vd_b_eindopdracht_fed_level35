@@ -1,5 +1,23 @@
 const testsongs = [
   {
+    title: "Hungerstrike",
+    artist: "Temple of a Dog",
+    genre: "Grunge",
+    rating: 5,
+  },
+  {
+    title: "Halleluja",
+    artist: "Jeff Buckley",
+    genre: "Indie",
+    rating: 5,
+  },
+  {
+    title: "Rosie",
+    artist: "Claw Boys Claw",
+    genre: "Indie",
+    rating: 4,
+  },
+  {
     title: "Bitterzoet",
     artist: "Eefje de Visser",
     genre: "Indie",

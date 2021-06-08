@@ -36,7 +36,7 @@ function SongForm(props) {
         onClick={props.handleClickAddList}
         value="testsongs"
       >
-        .
+        +
       </button>
     </div>
   );

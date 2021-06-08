@@ -40,3 +40,26 @@ it works, but the way of adding an id/key by using the array.length now has issu
 - Made a rudimentary import-list function for testing, clicking the red . will add all songs in testsongs.js to the current list of songs (multiple clicks will keep adding the same songs...)
 - Removed some remaining console.log's
 + _*Ready for shipping*_
+- follow up :
+  - might as well move genres out of state > data/genres.js (and also move the hardcoded default/test items to testsongs)
+  - for loops on arrays might as well be forEach() loops (guess it helped me to think in a for loop while contemplating what should happen)
+    > for (let i = 0; i < newSongs.length; i++) {
+      if (newSongs[i] === item) {
+        newSongs.splice(i, 1);
+      }
+    }
+	- can of course be:
+    > newSongs.forEach(removeSong);
+
+    > function removeSong(i, index) {
+      if (i === item) {
+        newSongs.splice(index, 1);
+      }
+    }
+	- which can be joined to:
+    > newSongs.forEach((i, index) => {
+      if (i === item) {
+        newSongs.splice(index, 1);
+      }
+    });
+  - oh, and red . was a tad hard to find > + ;)
